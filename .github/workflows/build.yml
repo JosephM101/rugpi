@@ -26,8 +26,8 @@ jobs:
         target:
           - aarch64-unknown-linux-musl
           - armv7-unknown-linux-musleabihf
-          - arm-unknown-linux-musleabihf
-          - arm-unknown-linux-musleabi
+          # - arm-unknown-linux-musleabihf
+          # - arm-unknown-linux-musleabi
           - x86_64-unknown-linux-musl
           - i686-unknown-linux-musl
           - riscv64gc-unknown-linux-gnu
@@ -72,6 +72,11 @@ jobs:
           merge-multiple: true
       - name: List Binaries
         run: find build/binaries
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: build/binaries/*
 
   # bakery_metadata:
   #   name: Bakery Image Metedata
